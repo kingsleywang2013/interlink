@@ -19,6 +19,10 @@ gem 'devise-bootstrap-views'
 gem "twitter-bootstrap-rails"
 gem "figaro"
 gem 'gravatarify', '~> 3.0.0'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem "jquery-fileupload-rails"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
