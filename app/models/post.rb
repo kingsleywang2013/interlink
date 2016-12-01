@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   mount_uploader :picture, PictureUploader
   validate :picture_size
+  validates :title, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :content, presence: true, length: { minimum: 3, maximum: 140 }
 
   private
     def picture_size

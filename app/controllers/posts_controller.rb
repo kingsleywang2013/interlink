@@ -10,8 +10,8 @@ class PostsController < ApplicationController
       flash[:success] = "You have uploaded a post successfully"
       redirect_to home_path
     else
-      flash[:error] = "There is something wrong with uploading"
-      render 'new'
+      flash[:danger] = "There is something wrong when posting an update"
+      redirect_to home_path
     end
   end
 

@@ -1,71 +1,10 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-    <!-- User Profile Info -->
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-4" style="text-align: center;">
-            <%= gravatar_tag @user, size: '80' %>
-          </div>
-          <div class="col-md-8">
-            <%= @user.email %>
-          </div>
-        </div>
-      </div>
-    </div><!--END User Profile Info -->
+   <%= render 'users/info' %>
 
-    <!-- Add post form -->
-    <div class="row" style="text-align: center;" id="add-post">
-      <div class="col-md-6" id="share-update">
-        <i class="fa fa-quote-left"></i> Share an update
-      </div>
-      <div class="col-md-6" id="upload-picture">
-        <i class="fa fa-image"></i> Upload a picture
-      </div>
-    </div>
-    <div id="post-form">
-      <%= form_for(@post, html: { multipart: true }) do |f| %>
-        <div class="form-group">
-            <div class="col-md-10">
-            <%= f.label :title %>
-            </div>
-            <div class="col-md-2" id="upload-image">
-            <i class="fa fa-image"></i>
-            </div>
-            <%= f.text_field :title, class:'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :content %>
-          <%= f.text_field :content, class:'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.file_field :picture, id: 'my_file', multiple:true, style: 'display:none' %>
-        </div>
-        <%= f.submit 'Share', class: 'btn btn-primary' %>
-      <% end %>
-    </div><!-- END Add post form -->
+   <%= render 'posts/form' %>
 
-    <!-- Showing Posts -->
-    <div class="row posts">
-      <% @posts.each do |post| %>
-        <div class="col-md-2 post-avatar">
-          <%= gravatar_tag @user, size: '80' %>
-        </div>
-
-        <div class="col-md-10">
-          <div class="panel panel-default">
-            <div class="panel-title">
-              <%= post.title %>
-            </div>
-            <div class="panel-body">
-              <p><%= post.content %></p>
-              <%= image_tag post.picture %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div><!--END Showing Posts -->
-
-  </div>
+   <%= render 'posts/list' %>
+ </div>
 </div>

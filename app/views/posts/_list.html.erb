@@ -1,0 +1,22 @@
+<!-- Showing Posts -->
+<div class="row posts">
+  <% @posts.each do |post| %>
+    <div class="col-md-2 post-avatar">
+      <%= gravatar_tag @user, size: '80' %>
+    </div>
+
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <div class="panel-title">
+          <%= post.title %>
+        </div>
+        <div class="panel-body">
+          <p><%= post.content %></p>
+          <% if post.picture.present? %>
+            <%= image_tag post.picture, width: "100%", height: "auto" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div><!--END Showing Posts -->
