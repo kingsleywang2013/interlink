@@ -19,3 +19,33 @@
   font-weight:bold;
   font-size: 20px;
 }
+#add-post {
+  color: #66696a;
+  background-color: #dfe1e3;
+}
+#share-update {
+  padding-top:15px;
+  padding-bottom:15px;
+}
+#share-update:hover{
+    background-color: #f1f3f5;
+}
+#share-update:visited{
+    background-color: #f1f3f5;
+}
+#upload-picture {
+  padding-top:15px;
+  padding-bottom:15px;
+}
+#upload-picture:hover{
+    background-color: #f1f3f5;
+}
+#upload-picture:visited{
+    background-color: #f1f3f5;
+}
+#post-form {
+  background-color: #f1f3f5;
+  border: 1px solid #c1c1c1;
+  padding:15px;
+  display:none;
+}

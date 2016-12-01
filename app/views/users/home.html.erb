@@ -1,1 +1,37 @@
-<h1>Welcome back <%= @user.email %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4" style="text-align: center;">
+            <%= gravatar_tag @user, size: '80' %>
+          </div>
+          <div class="col-md-8">
+            <%= @user.email %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="text-align: center;" id="add-post">
+      <div class="col-md-6" id="share-update">
+        <i class="fa fa-quote-left"></i> Share an update
+      </div>
+      <div class="col-md-6" id="upload-picture">
+        <i class="fa fa-image"></i> Upload a picture
+      </div>
+    </div>
+    <div id="post-form">
+      <%= form_for(@post, html: { multipart: true }) do |f| %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :content %>
+          <%= f.text_field :content, class:'form-control' %>
+        </div>
+        <%= f.submit 'Share', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
