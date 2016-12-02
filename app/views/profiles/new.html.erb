@@ -13,7 +13,15 @@
                                     onchange: 'avatarURL(this)' %>
         </div>
         <div class="col-md-6">
-          <p>Hi <%= current_user.email %> !</p>
+          <% if current_user.profile.present? %>
+            <% if current_user.full_name.present? %>
+              <p>Hi <%= current_user.full_name %> !</p>
+            <% else %>
+              <p>Hi <%= current_user.email %> !</p>
+            <% end %>
+          <% else %>
+            <p>Hi <%= current_user.email %> !</p>
+          <% end %>
           <p>If you want your potiantial next Boos know more about you, please fill up the following
           form as much as you can. Keep going, we will offer more platforms for you to express
           yourself soon later</p>

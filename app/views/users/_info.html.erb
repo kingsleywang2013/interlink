@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col-md-4" style="text-align: center;">
         <% if @user.profile.present? %>
-          <%= image_tag @user.profile.picture, size:'100', class: 'img-circle' %>
+          <% if @user.profile.picture.present? %>
+            <%= image_tag @user.profile.picture, size:'100', class: 'img-circle' %>
+          <% else %>
+            <%= gravatar_tag @user, size: '100', html: {class:'img-circle'} %>
+          <% end %>
         <% else %>
           <%= gravatar_tag @user, size: '100', html: {class:'img-circle'} %>
         <% end %>
