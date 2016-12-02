@@ -3,10 +3,27 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4" style="text-align: center;">
-        <%= gravatar_tag @user, size: '80' %>
+        <% if @user.profile.present? %>
+          <%= image_tag @user.profile.picture, size:'100', class: 'img-circle' %>
+        <% else %>
+          <%= gravatar_tag @user, size: '100', html: {class:'img-circle'} %>
+        <% end %>
       </div>
       <div class="col-md-8">
-        <%= @user.email %>
+        <% if @user.profile.present? %>
+          <h4><%= @user.full_name %></h4>
+          <% if @user.profile.job_title.present? %>
+            <p>Job Title: <%= @user.profile.job_title %></p>
+          <% end %>
+          <% if @user.profile.phone_no.present? %>
+            <p>Phone Number: <%= @user.profile.phone_no %></p>
+          <% end %>
+          <% if @user.profile.summary.present? %>
+            <p>Summary: <%= @user.profile.summary %></p>
+          <% end %>
+        <% else %>
+          <%= @user.email %>
+        <% end %>
       </div>
     </div>
   </div>

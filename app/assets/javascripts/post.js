@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#share-update').click(function(){
+  $('#share-update').click(function(event){
     $('#post-form').slideToggle( "slow" );
   });
 

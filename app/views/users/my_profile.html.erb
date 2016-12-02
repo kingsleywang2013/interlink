@@ -1,0 +1,73 @@
+<div class="row" style="margin-top:25px;">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-md-4">
+        <% if @profile.present? %>
+          <% if @profile.picture.present? %>
+            <%= image_tag @profile.picture, size: '200' %>
+          <% else %>
+            <%= gravatar_tag current_user, size: '200', html: { id:'gravatar' } %>
+          <% end %>
+        <% else %>
+          <%= gravatar_tag current_user, size: '200', html: { id:'gravatar' } %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h3>
+          <% if @profile.present? %>
+            <% if current_user.full_name.present? %>
+              <%= current_user.full_name %>
+            <% else %>
+              <%= current_user.email %>
+            <% end %>
+          <% else %>
+            <%= current_user.email %>
+          <% end %>
+        </h3>
+        <% if @profile.present? %>
+          <div class="my_profile">
+            <% if current_user.full_name.present? %>
+              <p>Email: <%= current_user.email %></p>
+            <% end %>
+            <% if @profile.job_title.present? %>
+              <p>Job Title: <%= @profile.job_title %></p>
+            <% end %>
+            <% if @profile.phone_no.present? %>
+              <p>Phone Number: <%= @profile.phone_no %></p>
+            <% end %>
+            <% if @profile.summary.present? %>
+              <p>Summary: <%= @profile.summary %></p>
+            <% end %>
+          </div>
+      <% else %>
+        <p>If you want your potiantial next Boos know more about you,
+        please fill up your profile detail in <%=link_to 'here', new_profile_path %> as much as can.
+        Keep going, we will offer more platforms for you to express yourself soon later</p>
+
+      <% end %>
+      </div>
+
+      <% if @posts.present? %>
+        <div class="col-md-12" style="margin-top:35px;">
+          <h3 align="center">My previous updates</h3>
+          <% @posts.each do |post| %>
+            <div class="well">
+                <h4>Title: <%= post.title %></h4>
+                <p><%= post.content.html_safe %></p>
+                <% if post.picture.present? %>
+                  <%= image_tag post.picture, width: "60%", height: "200" %>
+                <% end %>
+
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="col-md-12" style="margin-top:25px;">
+          <p>You still didn't post anything in here,
+          you can share somthing interesting and interact with your friends.</p>
+          <%= render 'posts/form' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

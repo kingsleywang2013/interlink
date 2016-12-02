@@ -2,7 +2,15 @@
 <div class="row posts">
   <% @posts.each do |post| %>
     <div class="col-md-2 post-avatar">
-      <%= gravatar_tag @user, size: '80' %>
+      <% if post.user.profile.present? %>
+        <% if post.user.profile.picture.present? %>
+          <%= image_tag post.user.profile.picture, size:'80', class: 'img-circle' %>
+        <% else %>
+          <%= gravatar_tag post.user, size: '80', html: {class:'img-circle'} %>
+        <% end %>
+      <% else %>
+        <%= gravatar_tag post.user, size: '80', html: {class:'img-circle'} %>
+      <% end %>
     </div>
 
     <div class="col-md-10">
@@ -11,9 +19,9 @@
           <%= post.title %>
         </div>
         <div class="panel-body">
-          <p><%= post.content %></p>
+          <p><%= post.content.html_safe %></p>
           <% if post.picture.present? %>
-            <%= image_tag post.picture, width: "100%", height: "auto" %>
+            <%= image_tag post.picture, width: "100%", height: "300" %>
           <% end %>
         </div>
       </div>
