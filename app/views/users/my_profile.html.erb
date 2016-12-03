@@ -35,9 +35,7 @@
             <% if @profile.phone_no.present? %>
               <p>Phone Number: <%= @profile.phone_no %></p>
             <% end %>
-            <% if @profile.summary.present? %>
-              <p>Summary: <%= @profile.summary %></p>
-            <% end %>
+
           </div>
       <% else %>
         <p>If you want your potiantial next Boos know more about you,
@@ -46,7 +44,12 @@
 
       <% end %>
       </div>
-
+      <div class="col-md-12">
+        <% if @profile.summary.present? %>
+          <h3 align="center">Summary</h3>
+          <p><%= @profile.summary %></p>
+        <% end %>
+      </div>
       <% if @posts.present? %>
         <div class="col-md-12" style="margin-top:35px;">
           <h3 align="center">My previous updates</h3>

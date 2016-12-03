@@ -1,0 +1,22 @@
+ <div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <%= link_to 'InterLink Jobs', new_job_path, class: 'navbar-brand' %>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', home_path %></li>
+        <li><%= link_to 'Post a Job', new_job_path %></li>
+        <li><%= link_to 'Manage Jobs', jobs_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to('Sign out', destroy_user_session_path, method: :delete ) %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
