@@ -1,0 +1,15 @@
+<% if @friends.size>0 %>
+  <div class="jumbotron friends">
+    <h1>Interlink is here, your networking is around here.</h1>
+
+    <%= render 'friends/lookup' %>
+
+  </div>
+  <%= render 'friends/list' %>
+<% else %>
+  <div class="jumbotron friends">
+    <h1>Interlink is here, your networking is around here.</h1>
+    <p>It seems you have no any friend, please find in the follow search toolbox.</p>
+    <%= render 'friends/lookup' %>
+  </div>
+<% end %>

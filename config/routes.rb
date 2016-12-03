@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :profiles
   get '/my_profile', to: 'users#my_profile'
+  get '/my_friends', to: 'users#my_friends'
+  get '/search_friend', to: 'users#search_friend'
+  post '/add_friend', to: 'users#add_friend'
+  resources :friendships, only: [:destroy]
 end

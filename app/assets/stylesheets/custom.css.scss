@@ -56,3 +56,20 @@
   margin-left: 0;
   margin-right: 0;
 }
+.jumbotron.friends {
+  height: 550px;
+  background-image: asset-url('friendship.jpg');
+  background-size: cover;
+  text-align: center;
+  text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+  color: white;
+  .input-group {
+    width: 100%;
+  }
+  .input-group-btn {
+    display: inherit;
+  }
+}
+.spinner {
+  display: none;
+}

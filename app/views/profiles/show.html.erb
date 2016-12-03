@@ -1,1 +1,63 @@
-<h1>Show profile</h1>
+<div class="row" style="margin-top:25px;">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-md-4">
+        <% if @profile.present? %>
+          <% if @profile.picture.present? %>
+            <%= image_tag @profile.picture, size: '200' %>
+          <% else %>
+            <%= gravatar_tag @user, size: '200', html: { id:'gravatar' } %>
+          <% end %>
+        <% else %>
+          <%= gravatar_tag @user, size: '200', html: { id:'gravatar' } %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h3>
+          <% if @profile.present? %>
+            <% if @user.full_name.present? %>
+              <%= @user.full_name %>
+            <% else %>
+              <%= @user.email %>
+            <% end %>
+          <% else %>
+            <%= @user.email %>
+          <% end %>
+        </h3>
+        <% if @profile.present? %>
+          <div class="my_profile">
+            <% if @user.full_name.present? %>
+              <p>Email: <%= @user.email %></p>
+            <% end %>
+            <% if @profile.job_title.present? %>
+              <p>Job Title: <%= @profile.job_title %></p>
+            <% end %>
+            <% if @profile.phone_no.present? %>
+              <p>Phone Number: <%= @profile.phone_no %></p>
+            <% end %>
+            <% if @profile.summary.present? %>
+              <p>Summary: <%= @profile.summary %></p>
+            <% end %>
+          </div>
+      <% end %>
+      </div>
+
+      <% if @posts.present? %>
+        <div class="col-md-12" style="margin-top:35px;">
+          <h3 align="center">Previous updates</h3>
+          <% @posts.each do |post| %>
+            <div class="well">
+                <h4>Title: <%= post.title %></h4>
+                <p><%= post.content.html_safe %></p>
+                <% if post.picture.present? %>
+                  <%= image_tag post.picture, width: "60%", height: "200" %>
+                <% end %>
+
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

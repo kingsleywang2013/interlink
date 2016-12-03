@@ -1,0 +1,67 @@
+<div class="row" style="margin-top:35px;" id="friend-lookup">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="input-group">
+      <%= form_tag search_friend_path, remote: true, method: :get, id: 'friend-lookup-form' do %>
+        <%= text_field_tag :search_param, params[:search_param], class: 'form-control', autofocus: true,
+        placeholder: 'Search for First Name, Last Name or Email' %>
+        <span class="input-group-btn">
+          <%= button_tag(type: :submit, class: 'btn btn-default') do %>
+          <i class="fa fa-search"></i>
+          <% end %>
+        </span>
+      <% end %>
+      <%= render 'common/spinner' %>
+
+
+      <% if @users %>
+        <% if @users.size > 0 %>
+          <div class="col-xs-12" id="friend_lookup_result">
+            <% @users.each do |friend| %>
+              <div class="panel panel-default">
+                <div class="panel-body" style="padding-left:0">
+                  <div class="col-md-2">
+                    <% if friend.profile.present? %>
+                      <% if friend.profile.picture.present? %>
+                        <%= image_tag friend.profile.picture, size: '80' %>
+                      <% else %>
+                        <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
+                      <% end %>
+                    <% else %>
+                      <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4" style="text-align:left;">
+                    <% if friend.full_name.present? %>
+                      Full Name: <%= friend.full_name %><br/>
+                      Email: <%= friend.email %>
+                    <% else %>
+                      Email: <%= friend.email %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= link_to 'View profile', profile_path(friend.profile), class: 'btn btn-xs btn-primary' %>
+                    <% if current_user.can_add_friend?(friend) %>
+                      <%= link_to 'Add friend', add_friend_path(user_id:current_user.id, friend_id: friend.id),
+                                                class: 'btn btn-xs btn-success', method: :post %>
+                    <% else %>
+                      <span class="panel panel-default">Friend added</span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="lead col-md-12">
+            No people match this criteria
+          </p>
+        <% end %>
+    <% end %>
+
+    <div id="friend_lookup_error"></div>
+    </div><!-- /input-group -->
+
+
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div id="my_friend_lists">
+  <h3 align="center">My Friends</h3>
+  <% @friends.each do |friend| %>
+    <div class="panel panel-primary">
+      <div class="panel-body" style="padding-left:0">
+        <div class="col-md-2">
+          <% if friend.profile.present? %>
+          <% if friend.profile.picture.present? %>
+          <%= image_tag friend.profile.picture, size: '80' %>
+          <% else %>
+          <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
+          <% end %>
+          <% else %>
+          <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
+          <% end %>
+        </div>
+        <div class="col-md-4" style="text-align:left;">
+          <% if friend.full_name.present? %>
+          Full Name: <%= friend.full_name %><br/>
+          Email: <%= friend.email %>
+          <% else %>
+          Email: <%= friend.email %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to 'View profile', profile_path(friend.profile), class: 'btn btn-xs btn-primary' %>
+          <%= link_to 'Remove friend', friendship_path(friend), class: 'btn btn-xs btn-danger',
+                                        method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
