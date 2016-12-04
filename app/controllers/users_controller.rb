@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @post = Post.new
   end
 
+  def my_jobs
+    @jobs = Job.all
+  end
+
   def my_friends
     @friends = current_user.friends
   end

@@ -1,0 +1,16 @@
+<% if @jobs %>
+  <% if @jobs.size > 0 %>
+    <div class="jumbotron job">
+      <h1>Jobs Platform</h1>
+      <p>The following lists are jobs what you have posted, feel free to manage them as you want.</p>
+      <p><%= link_to 'Post a job', new_job_path, class: 'btn btn-primary btn-lg' %></p>
+    </div>
+    <%= render 'jobs/list' %>
+  <% else %>
+    <div class="jumbotron job">
+      <h1>Jobs Platform</h1>
+      <p>You have not posted any jobs, please click the follwing button to find genius stars for you</p>
+      <p><%= link_to 'Post a job', new_job_path, class: 'btn btn-primary btn-lg' %></p>
+    </div>
+  <% end %>
+<% end %>

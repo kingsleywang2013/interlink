@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20161203143442) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "type"
-    t.string   "requirement"
-    t.string   "location"
+    t.string   "job_title"
+    t.string   "employment_type"
+    t.string   "job_requirement"
+    t.string   "job_location"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 

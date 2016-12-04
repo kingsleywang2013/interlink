@@ -1,0 +1,18 @@
+<h1 align="center"><%= @job.job_title %></h1>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <h4>Employment Type</h4>
+      <p><%= @job.employment_type %></p>
+    </div>
+    <div class="well">
+      <h4>Job Location</h4>
+      <p><%= @job.job_location %></p>
+    </div>
+    <div class="well">
+      <h4>Job Requirement</h4>
+      <p><%= simple_format(@job.job_requirement) %></p>
+    </div>
+
+  </div>
+</div>

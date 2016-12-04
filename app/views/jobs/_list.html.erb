@@ -1,0 +1,24 @@
+<div id="job_lists">
+  <h3 align="center">My posted jobs</h3>
+  <% @jobs.each do |job| %>
+    <div class="panel panel-primary">
+      <div class="panel-body" style="padding-left:0">
+        <div class="col-md-2">
+          <%= job.job_title %><br/>
+          <%= job.employment_type %><br/>
+          <%= job.job_location %>
+        </div>
+        <div class="col-md-4" style="text-align:left;">
+          <%= truncate(job.job_requirement, length: 150) %>
+
+        </div>
+        <div class="col-md-6">
+          <%= link_to 'View job', job_path(job), class: 'btn btn-xs btn-primary' %>
+          <%= link_to 'Edit job', edit_job_path(job), class: 'btn btn-xs btn-success' %>
+          <%= link_to 'Remove job', job_path(job), class: 'btn btn-xs btn-danger',
+                                        method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
