@@ -30,6 +30,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def search_job
+
+  end
+
+  def add_job
+
+  end
+
   def add_friend
     friend = User.find(params[:friend_id])
     friendship = current_user.friendships.build(friend_id: friend.id)

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post '/add_friend', to: 'users#add_friend'
   resources :friendships, only: [:destroy]
   resources :jobs
+  get '/search_job', to: 'users#search_job'
+  post '/add_job', to: 'users#add_job'
 end

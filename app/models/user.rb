@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :jobs
+  has_many :user_job_relations
+  has_many :jobs, through: :user_job_relations
 
   def full_name
     profile.first_name + ' ' + profile.last_name
