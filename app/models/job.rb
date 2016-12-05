@@ -13,7 +13,7 @@ class Job < ApplicationRecord
     elsif job_location.blank? and !job_title.blank?
       job_title_matches(job_title)
     elsif !job_title.blank? and !job_location.blank?
-      (job_title_matches(job_title) and job_location_matches(job_location)).uniq
+      where("job_title like? AND job_location LIKE?", "%#{job_title}%", "%#{job_location}%")
     else
       return Job.none
     end

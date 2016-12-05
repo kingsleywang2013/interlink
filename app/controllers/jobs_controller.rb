@@ -1,8 +1,8 @@
 class JobsController < ApplicationController
-  layout "layouts/job"
+  layout :resolve_layout
 
   def index
-    @jobs = current_user.jobs
+    @jobs = Job.where(user_id: current_user.id)
   end
 
   def new
@@ -48,5 +48,14 @@ class JobsController < ApplicationController
   private
     def jobs_param
       params.require(:job).permit(:job_title, :employment_type, :job_location, :job_requirement)
+    end
+
+    def resolve_layout
+      case action_name
+      when "new", "create", "update", "edit", "destroy", "index"
+        "layouts/job"
+      else
+        "layouts/application"
+      end
     end
 end

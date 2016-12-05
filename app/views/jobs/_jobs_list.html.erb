@@ -17,12 +17,15 @@
             </div>
             <div class="col-md-3">
               <%= link_to 'View job', job_path(job), class: 'btn btn-xs btn-primary' %>
-              <% if current_user.can_save_job?(job) %>
+              <% if current_user.can_save_job?(job) and !current_user.post_job?(job) %>
                 <%= link_to 'Save job', add_job_path(job_id: job.id), class: 'btn btn-xs btn-success',
                                                                         method: :post %>
+              <% elsif current_user.post_job?(job) %>
+                <span class="panel panel-default">Owned job</span>
               <% else %>
                 <span class="panel panel-default">Job saved</span>
               <% end %>
+
             </div>
           </div>
         </div>
