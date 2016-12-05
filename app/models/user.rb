@@ -19,6 +19,10 @@ class User < ApplicationRecord
     friendships.where(friend_id: friend.id).count < 1
   end
 
+  def can_save_job?(job)
+    user_job_relations.where(job_id: job.id).count < 1
+  end
+
   def except_current_user(friends)
     friends.reject { |friend| friend.id==self.id }
   end

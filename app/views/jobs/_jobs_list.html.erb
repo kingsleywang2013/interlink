@@ -1,0 +1,33 @@
+<div class="row">
+  <% if @jobs %>
+    <% if @jobs.size > 0 %>
+      <div id="job_lists">
+        <h3 align="center">All posted jobs</h3>
+        <% @jobs.each do |job| %>
+        <div class="panel panel-primary">
+          <div class="panel-body" style="padding-left:0">
+            <div class="col-md-3">
+              <%= job.job_title %><br/>
+              <%= job.employment_type %><br/>
+              <%= job.job_location %>
+            </div>
+            <div class="col-md-6" style="text-align:left;">
+              <%= truncate(job.job_requirement, length: 150) %>
+
+            </div>
+            <div class="col-md-3">
+              <%= link_to 'View job', job_path(job), class: 'btn btn-xs btn-primary' %>
+              <% if current_user.can_save_job?(job) %>
+                <%= link_to 'Save job', add_job_path(job_id: job.id), class: 'btn btn-xs btn-success',
+                                                                        method: :post %>
+              <% else %>
+                <span class="panel panel-default">Job saved</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
