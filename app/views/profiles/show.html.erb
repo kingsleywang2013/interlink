@@ -45,7 +45,11 @@
           <p><%= @profile.summary %></p>
         <% end %>
       </div>
-      <% if @posts.present? %>
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <% if @posts.present? %>
         <div class="col-md-12" style="margin-top:35px;">
           <h3 align="center">Previous updates</h3>
           <% @posts.each do |post| %>
@@ -60,7 +64,28 @@
           <% end %>
         </div>
       <% end %>
-    </div>
+  </div>
+  <div class="col-md-6">
+    <% if @jobs.present? %>
+      <div class="col-md-12" style="margin-top:35px;">
+          <h3 align="center">Saved jobs</h3>
+          <% @jobs.each do |job| %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="col-md-3">
+                  <%= job.job_title %>
+                </div>
+                <div class="col-md-5">
+                  <%= truncate(job.job_requirement, length: 80) %>
+                </div>
+                <div class="col-md-4">
+                  <%= link_to 'View job', job_path(job), class: 'btn btn-xs btn-primary' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
   </div>
 </div>
 

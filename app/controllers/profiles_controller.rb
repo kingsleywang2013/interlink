@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @user = @profile.user
     @posts = @user.posts
+    @jobs = @user.jobs
   end
 
   def edit
