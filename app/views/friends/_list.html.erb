@@ -5,13 +5,13 @@
       <div class="panel-body" style="padding-left:0">
         <div class="col-md-2">
           <% if friend.profile.present? %>
-          <% if friend.profile.picture.present? %>
-          <%= image_tag friend.profile.picture, size: '80' %>
+            <% if friend.profile.picture.present? %>
+              <%= image_tag friend.profile.picture, size: '80' %>
+            <% else %>
+              <%= gravatar_tag friend, size: '80', html: { id:'gravatar' } %>
+            <% end %>
           <% else %>
-          <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
-          <% end %>
-          <% else %>
-          <%= gravatar_tag current_user, size: '80', html: { id:'gravatar' } %>
+            <%= gravatar_tag friend, size: '80', html: { id:'gravatar' } %>
           <% end %>
         </div>
         <div class="col-md-4" style="text-align:left;">

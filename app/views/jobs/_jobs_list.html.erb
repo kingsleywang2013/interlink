@@ -12,8 +12,19 @@
               <%= job.job_location %>
             </div>
             <div class="col-md-6" style="text-align:left;">
-              <%= truncate(job.job_requirement, length: 150) %>
-
+              <%= truncate(job.job_requirement, length: 150) %><br/>
+              <div class="job-post-detail" style="margin-top:5px; color:#357ebd;">
+                <small>
+                  <span>Posted by:
+                    <% if job.user.full_name.present? %>
+                      <%= job.user.full_name %>
+                    <% else %>
+                      <%= job.user.email %>
+                    <% end %>
+                  </span>,
+                  <span> <%= time_ago_in_words(job.created_at) %> ago</span>
+                </small>
+              </div>
             </div>
             <div class="col-md-3">
               <%= link_to 'View job', job_path(job), class: 'btn btn-xs btn-primary' %>

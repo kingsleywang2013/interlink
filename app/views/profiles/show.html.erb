@@ -55,6 +55,15 @@
           <% @posts.each do |post| %>
             <div class="well">
                 <h4>Title: <%= post.title %></h4>
+                <small>
+                  <span>created by:
+                    <% if post.user.full_name.present? %>
+                      <%= post.user.full_name %>
+                    <% else %>
+                      <%= post.user.email %>
+                    <% end %>
+                  </span>, <span><%= time_ago_in_words(post.created_at) %> ago</span>
+                </small><br/><br/>
                 <p><%= post.content.html_safe %></p>
                 <% if post.picture.present? %>
                   <%= image_tag post.picture, width: "60%", height: "200" %>

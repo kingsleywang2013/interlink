@@ -35,7 +35,7 @@ class User < ApplicationRecord
     return User.none if params.blank?
     params.strip!
     params.downcase!
-    (first_name_matches(params) + last_name_matches(params) + email_matches(params)).uniq
+    (first_name_matches(params) and last_name_matches(params) and email_matches(params)).uniq
   end
 
   def self.first_name_matches(params)
