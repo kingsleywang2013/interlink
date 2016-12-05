@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get '/search_job', to: 'users#search_job'
   post '/add_job', to: 'users#add_job'
   get '/my_saved_jobs', to: 'users#my_saved_jobs'
+  resources :user_job_relations, only: [:destroy]
 end
