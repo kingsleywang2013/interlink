@@ -130,12 +130,13 @@
   color: white;
   height: auto;
 }
-#interaction {
+.interaction {
   padding:3px;
   margin-bottom: 0;
-  margin-top: 5px;
-  display: none;
 }
-.post-panel:hover #interaction {
-  display: block;
+.post-panel {
+  margin-bottom:0;
+}
+#likes {
+  text-align: right;
 }

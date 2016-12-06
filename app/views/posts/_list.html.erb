@@ -2,6 +2,7 @@
 <div class="row posts">
   <% @posts.each do |post| %>
     <div class="col-md-2 post-avatar">
+    <% if post.user.present? %>
       <% if post.user.profile.present? %>
         <% if post.user.profile.picture.present? %>
           <%= image_tag post.user.profile.picture, size:'80', class: 'img-circle' %>
@@ -11,19 +12,22 @@
       <% else %>
         <%= gravatar_tag post.user, size: '80', html: {class:'img-circle'} %>
       <% end %>
+    <% end %>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-10" style="margin-bottom: 35px;">
       <div class="panel panel-default post-panel">
         <div class="panel-title">
           <h4><%= post.title %></h4>
           <small>
             <span>created by:
+            <% if post.user.present? %>
               <% if post.user.full_name.present? %>
                 <%= post.user.full_name %>
               <% else %>
                 <%= post.user.email %>
               <% end %>
+            <% end %>
             </span>, <span><%= time_ago_in_words(post.created_at) %> ago</span>
           </small>
         </div>
@@ -32,18 +36,21 @@
           <% if post.picture.present? %>
             <%= image_tag post.picture, width: "100%", height: "300" %>
           <% end %>
-          <div class="well" id="interaction">
-            <div class="row">
-              <div class="col-md-6">
-                <div id="comments">Comment</div>
-              </div>
-              <div class="col-md-6">
-                <div id="likes">Like</div>
-              </div>
-            </div>
-          </div>
+
         </div>
+
       </div>
+      <div class="well interaction">
+        <%= render 'comments/actions', :post => post %>
+      </div>
+      <div class="comment" style="display: none;">
+        <div class="comment-lists">
+          <%= render post.comments %>
+        </div>
+        <%= render 'comments/form', :post => post %>
+      </div>
+
     </div>
+
   <% end %>
 </div><!--END Showing Posts -->

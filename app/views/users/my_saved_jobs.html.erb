@@ -3,31 +3,12 @@
   <h1>Jobs Repository</h1>
   <% if @saved_jobs.present? %>
     <p>You can review and manage your saved posts from the following lists</p>
+
   <% else %>
     <p>It seems you have not saved any jobs, you can find and save from the following button.</p>
     <p><%= link_to 'Search Jobs', my_jobs_path, class: 'btn btn-lg btn-primary' %></p>
   <% end %>
 </div>
-<h3 align="center">Job Results</h3>
-<div class="row">
-  <div class="col-md-12">
-    <% @saved_jobs.each do |job| %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="col-md-3">
-            <%= job.job_title %>
-          </div>
-          <div class="col-md-5">
-            <%= truncate(job.job_requirement, length: 250) %>
-          </div>
-          <div class="col-md-4">
-            <%= link_to 'View saved job', job_path(job), class: 'btn btn-xs btn-primary' %>
-            <%= link_to 'Remove saved job', user_job_relation_path(job), method: :delete,
-                                                          class: 'btn btn-xs btn-danger',
-                                                          data: {confirm: 'Are you sure?'} %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<% if @saved_jobs.present? %>
+  <%= render 'jobs/saved_job_lists' %>
+<% end %>

@@ -3,13 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_one :profile
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-  has_many :jobs
-  has_many :user_job_relations
+  has_many :jobs, dependent: :destroy
+  has_many :user_job_relations, dependent: :destroy
   has_many :jobs, through: :user_job_relations
+  has_many :comments, dependent: :destroy
 
   def full_name
     profile.first_name + ' ' + profile.last_name

@@ -1,0 +1,35 @@
+
+<div class="panel panel-default">
+  <div class="row">
+    <div class="col-md-2">
+      <% if comment.user.present? %>
+        <% if comment.user.profile.picture.present? %>
+          <%= image_tag comment.user.profile.picture, size:'50', class:'img-circle' %>
+        <% else %>
+          <%= gravatar_tag comment.user, size: '50', html: {class:'img-circle'} %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <% if comment.user.present? %>
+        <% if comment.user.full_name.present? %>
+          <h4>
+          <%= comment.user.full_name %>
+          <small><span>commented at <%= time_ago_in_words(comment.created_at) %></span></small>
+          </h4>
+        <% else %>
+          <h4><%= comment.user.email %></h4>
+        <% end %>
+      <% end %>
+      <p><%= simple_format(comment.content) %></p>
+    </div>
+    <% if comment.user.present? %>
+      <% if comment.user.id == current_user.id or comment.post.user.id == current_user.id %>
+        <div class="col-md-2" style="padding-top:15px;">
+          <%= link_to 'Delete', comment_path(comment), method: :delete, class: 'btn btn-xs btn-danger' %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,8 @@
+<%= form_for post.comments.build, remote: true do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :post_id, value: post.id %>
+    <%= f.text_area :content, placeholder: 'Write a comment...',
+                              class: 'form-control comment-content', required: true %>
+  </div>
+  <%= f.submit 'Post comment', class: 'btn btn-primary' %>
+<% end %>

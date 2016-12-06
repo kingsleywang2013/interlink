@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   post '/add_job', to: 'users#add_job'
   get '/my_saved_jobs', to: 'users#my_saved_jobs'
   resources :user_job_relations, only: [:destroy]
+  resources :comments
 end

@@ -44,7 +44,8 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :job_title %>
-            <%= f.text_field :job_title, class: "form-control", placeholder: 'Web Devloper, Engineer, Doctor' %>
+            <%= f.text_field :job_title, class: "form-control",
+                                        placeholder: 'Web Devloper, Engineer, Doctor', required:true %>
           </div>
         </div>
         <div class="col-md-6">
@@ -59,7 +60,11 @@
         <%= f.text_area:summary, cols:'10', rows: '5', class: "form-control", placeholder: 'A summary to let others know more about you. Dont be shy', requried: true %>
       </div>
       <div class="form-group">
-        <%= f.submit 'Create profile', class: 'btn btn-lg btn-success' %>
+        <% if @profile.new_record? %>
+          <%= f.submit 'Create profile', class: 'btn btn-lg btn-success' %>
+        <% else %>
+          <%= f.submit 'Update profile', class: 'btn btn-lg btn-success' %>
+        <% end %>
       </div>
     <% end %>
   </div>
