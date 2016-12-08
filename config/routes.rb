@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
+  get 'subscribe/new'
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "welcome#index"
   get '/home', to: 'users#home'
-  resources :posts
+  resources :posts do
+    member do
+      put 'like', to: 'posts#upvote'
+      put 'dislike', to: 'posts#downvote'
+    end
+  end
   resources :profiles
   get '/my_profile', to: 'users#my_profile'
   get '/my_friends', to: 'users#my_friends'
@@ -17,4 +24,5 @@ Rails.application.routes.draw do
   get '/my_saved_jobs', to: 'users#my_saved_jobs'
   resources :user_job_relations, only: [:destroy]
   resources :comments
+  resources :plans
 end

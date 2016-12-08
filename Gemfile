@@ -23,6 +23,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem "jquery-fileupload-rails"
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'stripe'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

@@ -1,0 +1,27 @@
+<h1 align="center">Thank you for subscribing our Pro Package</h1>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_tag plans_path(plan_id: params[:plan_id]), method: :post, role: "form", id: "pro_form" do %>
+
+      <div class="field form-group">
+        <%= label_tag :card_number, 'Credit Card Number' %><br />
+        <%= text_field_tag :card_number, nil, class: 'form-control', "data-stripe" => "number", required: true %>
+      </div>
+
+      <div class="field form-group">
+        <%= label_tag :card_code, 'Security Code on Card (CVV)' %><br />
+        <%= text_field_tag :card_code, nil, class: 'form-control', "data-stripe" => "cvv", required: true %>
+      </div>
+
+      <div class="field form-group">
+        <%= label_tag :card_month, 'Card Expiration' %><br />
+        <%= select_month nil, { add_month_numbers: true }, { name: nil, id: 'card_month', "data-stripe" => "exp-month", required: true } %>
+        <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 15 }, { name: nil, id: 'card_year', "data-stripe" => "exp-year", required: true } %>
+      </div>
+
+      <div class="actions form-group">
+        <%= button_tag "Sign up", type: :submit, class: 'btn btn-success', id: 'form-submit-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>

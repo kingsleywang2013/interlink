@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   validate :picture_size
   validates :title, presence: true, length: { minimum: 3, maximum: 50 }
   validates :content, presence: true, length: { minimum: 3, maximum: 140 }
+  acts_as_votable
 
   private
     def picture_size

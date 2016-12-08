@@ -1,0 +1,12 @@
+<script language="Javascript">
+  Stripe.setPublishableKey("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
+</script>
+<div id="flash-messages"></div>
+<div class="subscribe-form">
+<% if params[:plan_id] == '1' %>
+  <%= render 'basic_form' %>
+<% else %>
+
+  <%= render 'pro_form' %>
+<% end %>
+</div>

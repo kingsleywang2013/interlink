@@ -10,13 +10,31 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(jobs_param)
-    @job.user = current_user
-    if @job.save
-      flash[:success] = "The job was created successfully"
-      redirect_to job_path(@job)
-    else
-      render 'new'
+
+    job = Job.where(user_id:current_user.id)
+    job_count = job.count
+    if job_count < 3
+      create_job
+    end
+
+    if job_count < 6 and (current_user.subscribed==true and current_user.planid=='interlink-job-basic')
+      create_job
+    end
+
+    if job_count >= 3 and (current_user.subscribed==false)
+      flash[:error] = "Sorry, you have met the limitation for posting 3 jobs,
+                        if you want to post more jobs, please choose the following package to upgrade."
+      redirect_to plans_path
+    end
+
+    if job_count >= 6 and (current_user.subscribed==true and current_user.planid=='interlink-job-basic')
+      flash[:error] = "Sorry, you have met the limitation for posting 6 jobs,
+                        if you want to post more jobs, please choose our Pro Package to upgrade."
+      redirect_to plans_path
+    end
+
+    if job_count >= 6 and (current_user.subscribed==true and current_user.planid=='interlink-job-pro')
+      create_job
     end
   end
 
@@ -56,6 +74,17 @@ class JobsController < ApplicationController
         "layouts/job"
       else
         "layouts/application"
+      end
+    end
+
+    def create_job
+      @job = Job.new(jobs_param)
+      @job.user = current_user
+      if @job.save
+        flash[:success] = "The job was created successfully"
+        redirect_to job_path(@job)
+      else
+        render 'new'
       end
     end
 end

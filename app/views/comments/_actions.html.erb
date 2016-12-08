@@ -1,8 +1,19 @@
 <div class="row">
   <div class="col-md-6">
-    <div class="comments"><i class="fa fa-comments"></i> <%= pluralize(post.comments.count, 'Comment') %></div>
+    <div class="comments" style="cursor: pointer;"><i class="fa fa-comments"></i> <%= pluralize(post.comments.count, 'Comment') %></div>
   </div>
   <div class="col-md-6">
-    <div class="likes"><i class="fa fa-thumbs-o-up"></i> Like</div>
+    <div class="likes">
+      <%= link_to like_post_path(post), class: 'like-click', method: :put, remote: true do %>
+        <i class="fa fa-thumbs-o-up"></i> Like <span class="upvote" data-up-post_id="<%= post.id %>">
+        <%= post.get_upvotes.size %></span>
+      <% end %>
+    </div>
+    <div class="dislikes">
+      <%= link_to dislike_post_path(post), class: 'dislike-click', method: :put, remote: true do %>
+        <i class="fa fa-thumbs-o-down"></i> Dislike <span class="downvote" data-down-post_id="<%= post.id %>">
+        <%= post.get_downvotes.size %></span>
+      <% end %>
+    </div>
   </div>
 </div>

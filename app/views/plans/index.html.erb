@@ -1,0 +1,38 @@
+<h1 align="center">Subscribe Plan</h1>
+
+<div class="row package" style="margin-top: 25px;">
+  <div class="col-md-6">
+    <div class="well">
+      <h3>Basic Package</h3>
+      <ul>
+        <li>5 Jobs upload/month</li>
+        <li>Manage uploaded jobs</li>
+        <li>Recieve applicant's resume</li>
+        <li>Collect applicant's information</li>
+        <li>AUD $5.99 / Month</li>
+      </ul>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <%= link_to 'Subscribe', new_plan_path(plan_id: @basic.id), class:'btn btn-lg btn-primary', id:'basic-sub' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="well">
+      <h3>Pro Package</h3>
+      <ul>
+        <li>Unlimited Jobs upload/month</li>
+        <li>Manage uploaded jobs</li>
+        <li>Recieve applicant's resume</li>
+        <li>Collect applicant's information</li>
+        <li>AUD $9.99 / Month</li>
+      </ul>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <%= link_to 'Subscribe', new_plan_path(plan_id: @pro.id), class:'btn btn-lg btn-success', id:'pro-sub' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

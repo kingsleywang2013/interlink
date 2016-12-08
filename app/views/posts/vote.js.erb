@@ -1,0 +1,6 @@
+$(function() {
+  $("[data-up-post_id='" + "<%= @post.id %>" + "']").text("<%= @post.get_upvotes.size %>");
+  $("[data-down-post_id='" + "<%= @post.id %>" + "']").text("<%= @post.get_downvotes.size %>");
+  //$(this).find(".upvote").text("<%= @post.get_upvotes.size %>");
+  //$(this).find(".downvote").text("<%= @post.get_downvotes.size %>");
+});
