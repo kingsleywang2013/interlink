@@ -1,0 +1,43 @@
+<h2 align="center">Apply Job for <%= @job.job_title %></h2>
+<%= render 'common/errors', obj:@apply_job %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Employment Type
+      </div>
+      <div class="panel-body">
+        <%= @job.employment_type %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Job Location
+      </div>
+      <div class="panel-body">
+        <%= @job.job_location %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Job Requirement
+      </div>
+      <div class="panel-body">
+        <%= simple_format(@job.job_requirement) %>
+      </div>
+    </div>
+    <div class="apply-form">
+      <%= form_for @apply_job, url: apply_jobs_path(job_id: @job.id), html: { multipart: true } do |f| %>
+        <div class="form-group">
+          <%= f.label :cover_letter %>
+          <%= f.text_area :cover_letter, rows: 6, cols: 8, class: 'form-control', required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :resume %>
+          <%= f.file_field :resume, accept: 'application/pdf', requied: true %>
+        </div>
+        <%= f.submit 'Apply Job',  class: 'btn btn-lg btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

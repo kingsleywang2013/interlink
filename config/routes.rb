@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :user_job_relations, only: [:destroy]
   resources :comments
   resources :plans
+  resources :apply_jobs, only: [:new, :create]
 end

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Interlink,
+    <% if current_user.fullname.present? %>
+      <%= current_user.fullname %>
+    <% else %>
+      <%= current_user.email %>
+    <% end %>
+    </h1>
+    <p>
+      You have successfully applied the job: <%= @job.job_title%>,
+      the employer will get your information as well.<br>
+    </p>
+    <p>
+      To review the job position, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for choosing Interlink and have a great day!</p>
+  </body>
+</html>

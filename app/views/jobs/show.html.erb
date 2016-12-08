@@ -24,6 +24,14 @@
                                                 data: {confirm: 'Are you sure?'} %>
         <% else %>
           <%= link_to 'Save job', add_job_path(job_id: @job.id), class:'btn btn-lg btn-primary', method: :post %>
+
+        <% end %>
+        <% if !current_user.post_job?(@job) and !current_user.applied_job?(@job) %>
+          <%= link_to 'Apply Job', new_apply_job_path(job_id: @job.id), method: :get,
+                                                    class:'btn btn-lg btn-success',
+                                                    style: 'margin-top:15px;' %>
+        <% else %>
+          <%= link_to 'Applied Job', '#', class: 'btn btn-lg btn-info', style: 'margin-top:15px;' %>
         <% end %>
       </div>
     </div>

@@ -1,0 +1,14 @@
+Welcome to Interlink,
+<% if current_user.fullname.present? %>
+  <%= current_user.fullname %>
+<% else %>
+  <%= current_user.email%>
+<% end %>
+===============================================
+
+You have successfully applied the job: <%= @job.job_title%>,
+the employer will get your information as well.
+
+To review the job position, just follow this link: <%= @url %>.
+
+Thanks for choosing Interlink and have a great day!

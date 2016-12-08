@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :user_job_relations, dependent: :destroy
   has_many :jobs, through: :user_job_relations
   has_many :comments, dependent: :destroy
+  has_many :apply_jobs
 
   def full_name
     profile.first_name + ' ' + profile.last_name
@@ -30,6 +31,10 @@ class User < ApplicationRecord
 
   def post_job?(job)
     job.user_id == self.id
+  end
+
+  def applied_job?(job)
+    apply_jobs.where(job_id: job.id).first
   end
 
   def self.search(params)

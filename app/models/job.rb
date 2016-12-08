@@ -2,11 +2,13 @@ class Job < ApplicationRecord
   belongs_to :user
   has_many :user_job_relations
   has_many :users, through: :user_job_relations
+  has_many :apply_jobs
 
   validates :job_title, presence: true
   validates :employment_type, presence: true
   validates :job_requirement, presence: true
   validates :job_location, presence: true
+  validates :user_id, presence: true
 
   def self.type_options
     ['Full Time','Part Time', 'Casual', 'Contract']
