@@ -3,6 +3,11 @@ class Job < ApplicationRecord
   has_many :user_job_relations
   has_many :users, through: :user_job_relations
 
+  validates :job_title, presence: true
+  validates :employment_type, presence: true
+  validates :job_requirement, presence: true
+  validates :job_location, presence: true
+
   def self.type_options
     ['Full Time','Part Time', 'Casual', 'Contract']
   end
