@@ -5,6 +5,7 @@ class ApplyJobMailer < ApplicationMailer
   def apply_email(apply_job)
     @job = Job.find(apply_job.job_id)
     @url  = job_url(apply_job.job_id)
+    @user = User.find(apply_job.user_id)
     mail(to:'current_user.email', subject: 'Notification for Job Application')
   end
 

@@ -1,8 +1,8 @@
 Welcome to Interlink,
-<% if current_user.fullname.present? %>
-  <%= current_user.fullname %>
+<% if @user.full_name.present? %>
+  <%= @user.full_name %>
 <% else %>
-  <%= current_user.email%>
+  <%= @user.email%>
 <% end %>
 ===============================================
 
