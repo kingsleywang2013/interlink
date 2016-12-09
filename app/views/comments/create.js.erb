@@ -1,3 +1,4 @@
 $(".comment-lists").append("<%= j render @comment %>");
 $(".interaction").html("<%= j render partial: 'comments/actions', :locals => {:post => @post } %>");
 $(".comment-content").val(' ');
+window.location.reload();
