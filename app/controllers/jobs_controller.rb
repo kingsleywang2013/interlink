@@ -1,6 +1,9 @@
 class JobsController < ApplicationController
   layout :resolve_layout
 
+  before_action :set_job, only: [:edit, :update, :destroy, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def index
     @jobs = Job.where(user_id: current_user.id)
   end
@@ -39,15 +42,12 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
   end
 
   def edit
-    @job = Job.find(params[:id])
   end
 
   def update
-    @job = Job.find(params[:id])
     if @job.update(jobs_param)
       flash[:success] = "The job was updated successfully"
       redirect_to job_path(@job)
@@ -57,7 +57,6 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    @job = Job.find(params[:id])
     @job.destroy
     flash[:danger] = "The job was removed successfully"
     redirect_to jobs_path
@@ -66,6 +65,13 @@ class JobsController < ApplicationController
   private
     def jobs_param
       params.require(:job).permit(:job_title, :employment_type, :job_location, :job_requirement)
+    end
+
+    def set_job
+      @job = Job.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:danger] = "No specific job, please check your job again"
+      redirect_to root_path
     end
 
     def resolve_layout
@@ -85,6 +91,13 @@ class JobsController < ApplicationController
         redirect_to job_path(@job)
       else
         render 'new'
+      end
+    end
+
+    def require_same_user
+      if current_user != @job.user
+        flash[:danger] = "Only owner can perform this action"
+        redirect_to root_path
       end
     end
 end

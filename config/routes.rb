@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'subscribe/new'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
   get '/my_saved_jobs', to: 'users#my_saved_jobs'
   resources :user_job_relations, only: [:destroy]
   resources :comments
-  resources :plans
+  resources :plans, only: [:new, :index, :create]
   resources :apply_jobs, only: [:new, :create]
   get "*path", to: redirect('/')
 end
