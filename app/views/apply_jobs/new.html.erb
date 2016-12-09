@@ -33,8 +33,8 @@
           <%= f.text_area :cover_letter, rows: 6, cols: 8, class: 'form-control', required: true %>
         </div>
         <div class="form-group">
-          <%= f.label :resume %>
-          <%= f.file_field :resume, accept: 'application/pdf', requied: true %>
+          <%= f.label :resume %> (PDF format only)
+          <%= f.file_field :resume, accept: 'application/pdf' %>
         </div>
         <%= f.submit 'Apply Job',  class: 'btn btn-lg btn-success' %>
       <% end %>
