@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   resources :comments
   resources :plans
   resources :apply_jobs, only: [:new, :create]
+  get "*path", to: redirect('/')
 end
