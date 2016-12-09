@@ -3,4 +3,8 @@ class ApplyJobMailerPreview < ActionMailer::Preview
   def apply_email
     ApplyJobMailer.apply_email(ApplyJob.first)
   end
+
+  def employment_email
+    ApplyJobMailer.employment_email(ApplyJob.first)
+  end
 end

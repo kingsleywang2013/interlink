@@ -12,6 +12,7 @@ class ApplyJobsController < ApplicationController
     @apply_job.user_id = current_user.id
     if @apply_job.save
       ApplyJobMailer.apply_email(@apply_job).deliver_later
+      ApplyJobMailer.employment_email(@apply_job).deliver_later
       flash[:succuss] = "Your application for this job has been sent to the employer,
                           please check the copy of email in your mail inbox"
       redirect_to my_jobs_path

@@ -1,0 +1,18 @@
+Welcome to Interlink,
+<% if @employer.full_name.present? %>
+  <%= @employer.full_name %>
+<% else %>
+  <%= @employer.email %>
+<% end %>
+===============================================
+
+<% if @applicant.full_name.present? %>
+  <%= @applicant.full_name %>
+<% else %>
+  <%= @applicant.email %>
+<% end %>
+has applied the job: <%= @job.job_title%>
+
+To review the applicant's profile, just follow this link: <%= link_to 'Here', @url %>.
+
+Thanks for choosing Interlink and have a great day!
